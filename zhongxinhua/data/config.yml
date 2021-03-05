@@ -1,0 +1,12 @@
+﻿PATH : os.path.join(os.path.abspath(os.path.join(os.getcwd(), "..")), 'zxh_path')  # 中信华上传文件目录
+shangchaunpath : PATH + '/上传文件';zuankong_path = PATH + '/MI钻孔模板.xls';xiadan_path = PATH + '/上传文件'
+wuliaonumber : {'江西一厂':'FR40071','江西二厂': 'R40212','江西三厂': 'LJB00449','江西四厂':'R40214','江苏一厂': 'FR41118'}
+#共用变量
+font_url : 'test.zxhgroup.com'      #前台域名
+erp_url : 'test.zxhgroup.com:8080'  #后台域名
+new_erp_url : 'test.zxhwork.com'    #新后台域名
+handles : ''                        #用于关闭新开窗口参数
+leixing : '线路板'                   #下单的板子的类型
+jiage : ''                           #用于给个价格一个对象
+versions : 'new'                   #用于执行的新后台判断作用
+cengshu : ''
