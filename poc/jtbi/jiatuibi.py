@@ -1,4 +1,10 @@
 # coding=utf-8
+
+import sys
+a = ['/Users/imac/Desktop/归档/code/automated-testing/automated-testing/poc/jtbi', '/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pydev', '/Users/imac/Desktop/归档/code/automated-testing/automated-testing', '/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/third_party/thriftpy', '/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pydev', '/Users/imac/Library/Caches/JetBrains/PyCharmCE2020.3/cythonExtensions', '/Users/imac/Desktop/归档/code/automated-testing/automated-testing/poc/jtbi', '/Library/Frameworks/Python.framework/Versions/3.7/lib/python37.zip', '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7', '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload', '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages']
+for i in a:
+    sys.path.append(i)
+
 from appium import webdriver
 from time import sleep
 from base.base_page import BasePage
@@ -23,13 +29,154 @@ desired_caps['noSign']='true'  #设置来避免重签名
 
 a = BoxDriver(BoxBrowser.APP, desired_caps=desired_caps)
 a.click_wait2('x,//android.view.View[@content-desc="稍后完善"]')
+a.implicitly_wait(0.01)
+
+def di_ming_pian():
+    a.click_wait2('x,//*[@content-desc="递名片"]')
+
+def di_ming_pian2():
+    for i in range(3):
+        a.click_wait2('x,//*[@text="递名片"]')
+        sleep(2)
+        display = a.get_displayed('x,//*[@text="微信好友"]')
+        if display is True:
+            break
+
+def xuan_chuan_ce():
+    a.click_wait2('x,//*[@content-desc="宣传册"]')
+
+def xuan_chuan_ce2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
+        sleep(2)
+        display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        if display is True:
+            break
+
+def an_li_ku():
+    a.click_wait2('x,//*[@content-desc="案例库"]')
+
+def an_li_ku2():
+    for i in range(3):
+        a.click_wait2('x,//android.view.View[@content-desc="分享案例"]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        except:
+            pass
+        if display is True:
+            break
+
+def shang_pin():
+    a.click_wait2('x,//*[@content-desc="商品"]')
+
+def shang_pin2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@text,"立即分享")]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@text="微信好友"]')
+        except:
+            pass
+        if display is True:
+            break
+
+def wen_ku():
+    '''
+    后退两次到主页面
+    :return:
+    '''
+    a.click_wait2('x,//*[@content-desc="文库"]')
+    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
+
+def wen_ku2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        except:
+            pass
+        if display is True:
+            break
+
+def haibao():
+    '''
+    后退两次到主页面
+    :return:
+    '''
+    a.click_wait2('x,//*[@content-desc="海报"]')
+    a.click_wait2('x,//android.widget.HorizontalScrollView/android.widget.FrameLayout/android.widget.FrameLayout')
+    haibao2()
+
+def haibao2():
+    for i in range(3):
+        try:
+            a.click_wait2('x,//android.view.View[@content-desc="生成海报"]')
+            sleep(2)
+            res = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        except:
+            res = False
+        if res is True:
+            break
+
+def shi_pin():
+    '''
+    后退两次到主页面
+    :return:
+    '''
+    a.click_wait2('x,//*[@content-desc="视频"]')
+    #选择第一条数据
+    a.click_wait2('x,//android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout')
+
+def shi_pin2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@text,"立即分享")]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        except:
+            pass
+        if display is True:
+            break
+
+def peng_you_quan():
+    a.click_wait2('x,//*[@content-desc="朋友圈素材"]')
+
+def peng_you_quan2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@text="微信好友"]')
+        except:pass
+        if display is True:
+            break
+
+def wen_juan():
+    a.click_wait2('x,//*[@content-desc="问卷"]')
+
+def wen_juan2():
+    for i in range(3):
+        a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
+        sleep(2)
+        display = ''
+        try:
+            display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+        except:pass
+        if display is True:
+            break
 
 def wexin(dimingpian=None):
     """
     微信分享操作
     :return:
     """
-    sleep(3)
     if  dimingpian in ['di_ming_pian','shang_pin','peng_you_quan']:
         a.click('x,//*[@text="微信好友"]')
     else:
@@ -49,7 +196,7 @@ def wexin(dimingpian=None):
             except:
                 a._locate_element('x,//*[@text="分享勋章"]')
                 a.tap_click([404, 1245], [810, 1440])
-                bb = '0'
+                bb = '分享勋章'
             break
         except:
             pass
@@ -65,69 +212,6 @@ def wexin(dimingpian=None):
         cc = True
     return cc
 
-def di_ming_pian():
-    a.click_wait2('x,//*[@content-desc="递名片"]')
-    a.click_wait2('x,//*[@text="递名片"]')
-
-def xuan_chuan_ce():
-    a.click_wait2('x,//*[@content-desc="宣传册"]')
-    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
-
-def an_li_ku():
-    a.click_wait2('x,//*[@content-desc="案例库"]')
-    a.click_wait2('x,//android.view.View[@content-desc="分享案例"]')
-
-def shang_pin():
-    a.click_wait2('x,//*[@content-desc="商品"]')
-    a.click_wait2('x,//*[contains(@text,"立即分享")]')
-
-def wen_ku():
-    '''
-    后退两次到主页面
-    :return:
-    '''
-    a.click_wait2('x,//*[@content-desc="文库"]')
-    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
-    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
-
-def haibao2():
-    for i in range(10):
-        try:
-            a.click_wait2('x,//android.view.View[@content-desc="生成海报"]')
-            sleep(2)
-            res = a.get_displayed('x,//*[@content-desc="微信好友"]')
-        except:
-            res = False
-        if res is True:
-            break
-
-def haibao():
-    '''
-    后退两次到主页面
-    :return:
-    '''
-    a.click_wait2('x,//*[@content-desc="海报"]')
-    a.click_wait2('x,//android.widget.HorizontalScrollView/android.widget.FrameLayout/android.widget.FrameLayout')
-    haibao2()
-
-def shi_pin():
-    '''
-    后退两次到主页面
-    :return:
-    '''
-    a.click_wait2('x,//*[@content-desc="视频"]')
-    #选择第一条数据
-    a.click_wait2('x,//android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout')
-    a.click_wait2('x,//*[contains(@text,"立即分享")]')
-
-def peng_you_quan():
-    a.click_wait2('x,//*[@content-desc="朋友圈素材"]')
-    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
-
-def wen_juan():
-    a.click_wait2('x,//*[@content-desc="问卷"]')
-    a.click_wait2('x,//*[contains(@content-desc,"立即分享")]')
-
 def kk(q):
     '''
     配置每个内容的重复分享的按钮
@@ -135,22 +219,35 @@ def kk(q):
     :return:
     '''
     sleep(3)
-    if q.__name__ in ['shi_pin','shang_pin']:
-        a.click('x,//*[contains(@text,"立即分享")]')
+    if q.__name__ in 'shi_pin':
+        shi_pin2()
+    elif q.__name__ == 'shang_pin':
+        shang_pin2()
     elif q.__name__ == 'haibao':
         haibao2()
     elif q.__name__ == 'an_li_ku':
-        a.click('x,//android.view.View[@content-desc="分享案例"]')
+        an_li_ku2()
     elif q.__name__ == 'di_ming_pian':
-        a.click('x,//*[@text="递名片"]')
+        di_ming_pian2()
     else:
-        a.click('x,//*[contains(@content-desc,"立即分享")]')
+        for i in range(3):
+            a.click('x,//*[contains(@content-desc,"立即分享")]')
+            sleep(2)
+            display = ''
+            try:
+                display = a.get_displayed('x,//*[@content-desc="微信好友"]')
+            except:
+                pass
+            if display is True:
+                break
 
 def uu(q,p):
     q()
-    print(q.__name__)
+    b_name = q.__name__
+    eval(b_name + '2')()
+    print(b_name)
     for i in range(10):
-        b = wexin(q.__name__)
+        b = wexin(b_name)
         if b is False:
             for i in range(p):
                 a.back()
