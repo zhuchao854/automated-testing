@@ -256,6 +256,10 @@ class BoxDriver(object):
         """
         self._base_driver.quit()
 
+
+    def close_app(self):
+        self._base_driver.close_app()
+
     def close_browser(self):
         """
         关闭浏览器
