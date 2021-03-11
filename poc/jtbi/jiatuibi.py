@@ -267,9 +267,8 @@ try:
         uu(u,t)
     a.close_app()
 
-except:
-    import traceback
-    traceback.print_exc()
+finally:
+
     a.close_app()
 
 
