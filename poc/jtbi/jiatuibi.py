@@ -266,8 +266,12 @@ try:
     for u,t in w:
         uu(u,t)
     a.close_app()
+
 except:
+    import traceback
+    traceback.print_exc()
     a.close_app()
+
 
 
 
