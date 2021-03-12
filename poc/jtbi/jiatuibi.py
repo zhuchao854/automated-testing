@@ -27,7 +27,6 @@ desired_caps['noSign']='true'  #设置来避免重签名
 try:
     a = BoxDriver(BoxBrowser.APP, desired_caps=desired_caps)
     a.click_wait2('x,//android.view.View[@content-desc="稍后完善"]')
-    a.implicitly_wait(0.5)
 
     def di_ming_pian():
         a.click_wait2('x,//*[@content-desc="递名片"]')
@@ -175,7 +174,7 @@ try:
         微信分享操作
         :return:
         """
-        sleep(1)
+        sleep(3)
         if  dimingpian in ['di_ming_pian','shang_pin','peng_you_quan']:
             a.click('x,//*[@text="微信好友"]')
         else:
@@ -240,7 +239,7 @@ try:
                 if display is True:
                     break
 
-    def uu(q,p):
+    def uu(q):
         q()
         b_name = q.__name__
         eval(b_name + '2')()
@@ -248,35 +247,42 @@ try:
         for i in range(10):
             b = wexin(b_name)
             if b is False:
-                for i in range(p):
+                title = ''
+                while title != '工作台':
                     a.back()
-                    sleep(3)
+                    sleep(2)
+                    try:
+                        title = a.get_text("x,//*[@text='工作台']")
+                    except:
+                        pass
                 try:
                     a.click('x,//android.view.View[@content-desc="稍后完善"]')
                 except:
                     pass
                 break
             else:
+                sleep(2)
                 kk(q)
 
+
     w = [
-        (di_ming_pian, 1),
-         (xuan_chuan_ce, 1),
-         (an_li_ku, 1),
-         (shang_pin, 1),
-         (wen_ku, 2),
-         (haibao, 2),
-         (shi_pin, 2),
-         (wen_juan, 1)
+        di_ming_pian,
+         xuan_chuan_ce,
+         an_li_ku,
+         shang_pin,
+         wen_ku,
+         haibao,
+         shi_pin,
+         wen_juan
     ]
 
-    for u,t in w:
-        uu(u,t)
+    for u in w:
+        uu(u)
     a.close_app()
 
 finally:
-
-    a.close_app()
+    pass
+    # a.close_app()
 
 
 
