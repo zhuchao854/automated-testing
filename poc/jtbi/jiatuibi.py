@@ -27,7 +27,7 @@ desired_caps['noSign']='true'  #设置来避免重签名
 try:
     a = BoxDriver(BoxBrowser.APP, desired_caps=desired_caps)
     a.click_wait2('x,//android.view.View[@content-desc="稍后完善"]')
-    a.implicitly_wait(5)
+    a.implicitly_wait(0.5)
 
     def di_ming_pian():
         a.click_wait2('x,//*[@content-desc="递名片"]')
