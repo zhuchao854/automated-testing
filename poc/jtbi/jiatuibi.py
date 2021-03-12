@@ -5,9 +5,7 @@ a = ['/Users/imac/Desktop/归档/code/automated-testing/automated-testing/poc/jt
 for i in a:
     sys.path.append(i)
 
-from appium import webdriver
 from time import sleep
-from base.base_page import BasePage
 from base.box_driver import BoxDriver,BoxBrowser
 
 
@@ -29,7 +27,7 @@ desired_caps['noSign']='true'  #设置来避免重签名
 try:
     a = BoxDriver(BoxBrowser.APP, desired_caps=desired_caps)
     a.click_wait2('x,//android.view.View[@content-desc="稍后完善"]')
-
+    a.implicitly_wait(5)
 
     def di_ming_pian():
         a.click_wait2('x,//*[@content-desc="递名片"]')
@@ -261,7 +259,16 @@ try:
             else:
                 kk(q)
 
-    w = [(di_ming_pian, 1),(xuan_chuan_ce, 1),(an_li_ku, 1),(shang_pin, 1),(wen_ku, 2),(haibao, 2),(shi_pin, 2),(wen_juan, 1)]
+    w = [
+        (di_ming_pian, 1),
+         (xuan_chuan_ce, 1),
+         (an_li_ku, 1),
+         (shang_pin, 1),
+         (wen_ku, 2),
+         (haibao, 2),
+         (shi_pin, 2),
+         (wen_juan, 1)
+    ]
 
     for u,t in w:
         uu(u,t)
