@@ -244,7 +244,7 @@ try:
         b_name = q.__name__
         eval(b_name + '2')()
         print(b_name)
-        for i in range(10):
+        for i in range(20):
             b = wexin(b_name)
             if b is False:
                 title = ''
@@ -261,7 +261,6 @@ try:
                     pass
                 break
             else:
-                sleep(2)
                 kk(q)
 
 
