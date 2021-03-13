@@ -282,7 +282,7 @@ try:
 
 finally:
     pass
-    # a.close_app()
+    a.close_app()
 
 
 
